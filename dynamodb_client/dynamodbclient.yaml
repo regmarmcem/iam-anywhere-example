@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dynamodbclient
+spec:
+  containers:
+  - image: dynamodbclient:latest
+    imagePullPolicy: Never
+    name: dynamodbclient
+    command: ["/bin/bash", "-c", "/dynamodbclient >> /log/dynamodbclient.log"]
+    volumeMounts:
+      - name: secret-volume
+        mountPath: /secret-volume
+      - name: log-volume
+        mountPath: /log
+    envFrom:
+    - configMapRef:
+        name: dynamodbclient-config
+  volumes:
+    - name: secret-volume
+      secret:
+        secretName: dynamodb-secret
+    - name: log-volume
+      hostPath:
+        path: /var/log
+        type: Directory
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+
+

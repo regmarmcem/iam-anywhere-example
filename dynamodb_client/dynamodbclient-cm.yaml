@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: dynamodbclient-config
+data:
+  ROLE_ARN: <Role Arn>
+  TRUST_ANCHOR_ARN: <Trust anchor Arn>
+  PROFILE_ARN: <Profile Arn>
