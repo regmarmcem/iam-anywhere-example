@@ -38,6 +38,7 @@ https://speakerdeck.com/regmarmcem/eks-iam-anywhere
 ➜ docker exec -it dev-cluster-eks-a-cluster-control-plane bash
 bash-4.2# ctr -n k8s.io images import dynamodbclient.tar
 ➜ kubectl create secret tls dynamodb-secret --cert=dynamodbclient.crt --key=dynamodbclient.key
+➜ kubectl apply -f dynamodbclient-cm.yaml # yamlの中身は書き換えておくこと
 ➜ kubectl apply –f dynamodbclient.yaml
 ```
 
